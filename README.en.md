@@ -20,6 +20,18 @@ audio.
 > OpenAI's [text-to-speech guide](https://developers.openai.com/api/docs/guides/text-to-speech)
 > also requires this disclosure.
 
+## Audio demo
+
+Click the player below to hear a **1 minute 26 second** excerpt. This is
+**AI-generated speech, not a human recording**, produced with **CosyVoice** in
+an earlier experimental version. It does not represent output from the current
+OpenAI-based CLI, which defaults to OpenAI `gpt-4o-mini-tts`.
+
+https://github.com/user-attachments/assets/81e0467d-1558-4301-b052-152600844eee
+
+The demo media is not covered by the code's MIT license. Verify the applicable
+rights separately before using or redistributing it.
+
 ## Features
 
 - Import one `.txt` file or a directory of `.txt` files locally.

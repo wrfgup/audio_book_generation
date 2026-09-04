@@ -16,6 +16,16 @@ Responses API 识别说话人、调用 Speech API 生成 WAV 音频。
 > 清楚披露这一点。OpenAI 的[文本转语音文档](https://developers.openai.com/api/docs/guides/text-to-speech)
 > 也明确要求进行此类披露。
 
+## 试听 Demo
+
+点击下方播放器，试听 **1 分 26 秒**的音频片段。这是历史实验版本使用
+**CosyVoice** 生成的 **AI 合成语音，并非真人录音**，不代表当前
+OpenAI CLI 的输出效果；当前版本默认使用 OpenAI `gpt-4o-mini-tts`。
+
+https://github.com/user-attachments/assets/81e0467d-1558-4301-b052-152600844eee
+
+试听素材不属于代码的 MIT 许可范围；使用或传播素材须另行确认相应权利。
+
 ## 功能
 
 - 本地导入单个 `.txt` 文件或包含 `.txt` 文件的目录。

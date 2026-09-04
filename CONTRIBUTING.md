@@ -49,8 +49,13 @@ python -m build
 python -m twine check dist/*
 python scripts/prepublish_check.py
 pip-audit
-detect-secrets scan --all-files
+python -X utf8 -m detect_secrets scan --no-verify
 ```
+
+本地密钥扫描默认只检查 Git 跟踪文件，强制 UTF-8 并禁用联网验证。不要在含
+私人数据的工作区使用 `--all-files`。必须审查输出 JSON 中的每项结果；命令
+退出码为 0 不代表没有发现。CI 在干净 checkout 中额外使用 `--all-files`
+覆盖打包元数据，并在存在未审查结果时失败。
 
 `pytest` 配置包含分支覆盖率，最低总覆盖率为 80%。新增行为应覆盖成功路径、
 输入错误和安全边界，不能仅依赖总覆盖率数字。

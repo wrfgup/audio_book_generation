@@ -127,10 +127,10 @@ After reviewing the dry-run estimates and limits, configure the API and build:
 
 ```bash
 # Linux / macOS
-export OPENAI_API_KEY="example-api-key"
+export OPENAI_API_KEY="<your_api_key>"
 
 # Windows PowerShell
-$env:OPENAI_API_KEY = "example-api-key"
+$env:OPENAI_API_KEY = "<your_api_key>"
 
 audiobook build --input ./work/book --output ./work/audio
 ```
@@ -273,7 +273,7 @@ Inject secrets through the environment. Never put a real value in
 `.env.example`, JSON files, shell history, or logs:
 
 ```env
-OPENAI_API_KEY=example-api-key
+OPENAI_API_KEY=<your_api_key>
 OPENAI_BASE_URL=https://api.openai.com/v1
 OPENAI_TTS_MODEL=gpt-4o-mini-tts
 OPENAI_LLM_MODEL=gpt-5.6-luna

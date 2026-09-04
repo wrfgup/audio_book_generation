@@ -57,8 +57,14 @@ python -m build
 python -m twine check dist/*
 python scripts/prepublish_check.py
 pip-audit
-detect-secrets scan --all-files
+python -X utf8 -m detect_secrets scan --no-verify
 ```
+
+Local secret scanning defaults to Git-tracked files, forces UTF-8, and disables
+online verification. Do not use `--all-files` in a workspace containing private
+data. Review every result in the output JSON; exit code 0 does not mean there
+are no findings. CI also uses `--all-files` in a clean checkout to cover package
+metadata and fails on unaudited results.
 
 The pytest configuration measures branch coverage and requires at least 80%
 overall. New behavior should cover success, input failure, and security

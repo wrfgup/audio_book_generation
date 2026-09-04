@@ -36,20 +36,30 @@ jobs:
       - name: Check release candidate files
         run: python scripts/prepublish_check.py
       - name: Scan checkout for secrets
+        env:
+          PYTHONUTF8: "1"
         run: |
-          detect-secrets scan --all-files \
+          python -X utf8 -m detect_secrets scan --all-files --no-verify \
             --exclude-files '(^|[\\/])(\.git|tests)([\\/]|$)' \
-            --exclude-lines '^OPENAI_API_KEY=sk-\.\.\.$' \
-            > detect-secrets-report.json
-          python - <<'PY'
+            > "$RUNNER_TEMP/detect-secrets-report.json"
+          python -X utf8 - <<'PY'
           import json
-          import sys
+          import os
           from pathlib import Path
 
-          report = json.loads(Path("detect-secrets-report.json").read_text(encoding="utf-8"))
-          count = sum(len(items) for items in report.get("results", {}).values())
+          report_path = Path(os.environ["RUNNER_TEMP"]) / "detect-secrets-report.json"
+          report = json.loads(report_path.read_text(encoding="utf-8"))
+          results = report["results"]
+          count = sum(len(items) for items in results.values())
           if count:
               print(f"detect-secrets found {count} unaudited result(s).")
+              for filename, items in sorted(results.items()):
+                  for item in items:
+                      print(json.dumps({
+                          "file": filename,
+                          "line": item["line_number"],
+                          "type": item["type"],
+                      }, ensure_ascii=True))
               raise SystemExit(1)
           print("detect-secrets found no unaudited results.")
           PY

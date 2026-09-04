@@ -65,9 +65,13 @@ pytest
 python -m build
 python -m twine check dist/*
 pip-audit
-detect-secrets scan --all-files
+python -X utf8 -m detect_secrets scan --no-verify
 python scripts/prepublish_check.py
 ```
+
+密钥扫描默认只检查 Git 跟踪文件，强制 UTF-8 并禁用联网验证。不要在含私人
+数据的工作区使用 `--all-files`；CI 仅在干净 checkout 中添加该参数以覆盖
+打包元数据。必须审查输出 JSON 的每项结果，不能将退出码 0 视为无发现。
 
 - [ ] CI 支持的 Python/平台矩阵全部通过。
 - [ ] 分支覆盖率不低于 80%，测试过程无真实网络或付费 API 请求。
@@ -146,6 +150,11 @@ python scripts/prepublish_check.py
 - [ ] Run Ruff, formatting check, mypy, pytest with at least 80% branch
   coverage, build, Twine check, `pip-audit`, `detect-secrets`, and the
   pre-publication check.
+- [ ] Use `python -X utf8 -m detect_secrets scan --no-verify` to scan Git-tracked
+  files with UTF-8 and no online verification. Never use `--all-files` in a
+  workspace containing private data; CI adds it only in a clean checkout to
+  cover package metadata. Review every JSON result; exit code 0 does not mean
+  there are no findings.
 - [ ] Confirm tests make no live network or paid API calls.
 - [ ] Inspect sdist and wheel contents. Install only the wheel in a second
   clean environment and run both version entry points.

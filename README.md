@@ -116,10 +116,10 @@ work/book/
 
 ```bash
 # Linux / macOS
-export OPENAI_API_KEY="example-api-key"
+export OPENAI_API_KEY="<your_api_key>"
 
 # Windows PowerShell
-$env:OPENAI_API_KEY = "example-api-key"
+$env:OPENAI_API_KEY = "<your_api_key>"
 
 audiobook build --input ./work/book --output ./work/audio
 ```
@@ -246,7 +246,7 @@ audiobook build --input DIR --output DIR
 历史或日志：
 
 ```env
-OPENAI_API_KEY=example-api-key
+OPENAI_API_KEY=<your_api_key>
 OPENAI_BASE_URL=https://api.openai.com/v1
 OPENAI_TTS_MODEL=gpt-4o-mini-tts
 OPENAI_LLM_MODEL=gpt-5.6-luna

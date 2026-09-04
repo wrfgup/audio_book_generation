@@ -1,0 +1,55 @@
+name: Security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    name: Dependency and secret audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install project and audit tools
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install --editable ".[dev]"
+      - name: Audit installed dependencies
+        run: pip-audit
+      - name: Check release candidate files
+        run: python scripts/prepublish_check.py
+      - name: Scan checkout for secrets
+        run: |
+          detect-secrets scan --all-files \
+            --exclude-files '(^|[\\/])(\.git|tests)([\\/]|$)' \
+            --exclude-lines '^OPENAI_API_KEY=sk-\.\.\.$' \
+            > detect-secrets-report.json
+          python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          report = json.loads(Path("detect-secrets-report.json").read_text(encoding="utf-8"))
+          count = sum(len(items) for items in report.get("results", {}).values())
+          if count:
+              print(f"detect-secrets found {count} unaudited result(s).")
+              raise SystemExit(1)
+          print("detect-secrets found no unaudited results.")
+          PY

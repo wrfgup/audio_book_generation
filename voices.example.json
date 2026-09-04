@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "narrator": {
+    "voice": "marin",
+    "instructions": "Read clearly and naturally as an audiobook narrator. Do not imitate a real person."
+  },
+  "male": [
+    {
+      "voice": "ash",
+      "instructions": "Read dialogue naturally. Do not imitate a real person."
+    }
+  ],
+  "female": [
+    {
+      "voice": "coral",
+      "instructions": "Read dialogue naturally. Do not imitate a real person."
+    }
+  ],
+  "characters": {},
+  "default_dialogue": null
+}

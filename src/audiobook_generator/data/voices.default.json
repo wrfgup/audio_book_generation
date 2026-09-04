@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "narrator": {
+    "voice": "marin",
+    "instructions": "Read clearly and naturally as an audiobook narrator. Do not imitate a real person."
+  },
+  "male": [
+    {
+      "voice": "ash",
+      "instructions": "Read the dialogue naturally and consistently. Do not imitate a real person."
+    },
+    {
+      "voice": "alloy",
+      "instructions": "Read the dialogue naturally and consistently. Do not imitate a real person."
+    }
+  ],
+  "female": [
+    {
+      "voice": "coral",
+      "instructions": "Read the dialogue naturally and consistently. Do not imitate a real person."
+    },
+    {
+      "voice": "sage",
+      "instructions": "Read the dialogue naturally and consistently. Do not imitate a real person."
+    }
+  ],
+  "characters": {},
+  "default_dialogue": null
+}

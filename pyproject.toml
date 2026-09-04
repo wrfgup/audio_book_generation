@@ -1,0 +1,119 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "audiobook-generator"
+version = "0.1.0"
+description = "Turn authorized text into reproducible, multi-speaker audiobooks with OpenAI TTS."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["audiobook", "openai", "text-to-speech", "tts"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+]
+dependencies = [
+    "beautifulsoup4>=4.12,<5",
+    "openai>=3.7,<4",
+    "pydantic>=2,<3",
+    "python-dotenv>=1,<2",
+    "requests>=2.32,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "build>=1.2,<2",
+    "detect-secrets>=1.5,<2",
+    "mypy>=1.13,<2",
+    "pip-audit>=2.7,<3",
+    "pytest>=8,<10",
+    "pytest-cov>=6,<8",
+    "responses>=0.25,<1",
+    "ruff>=0.12,<1",
+    "twine>=5,<7",
+]
+
+[project.scripts]
+audiobook = "audiobook_generator.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+py-modules = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["audiobook_generator*"]
+
+[tool.setuptools.package-data]
+audiobook_generator = ["data/*.json"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+src = ["src", "tests"]
+extend-exclude = ["build", "dist"]
+
+[tool.ruff.lint]
+select = ["B", "E4", "E7", "E9", "F", "I", "UP"]
+
+[tool.ruff.format]
+docstring-code-format = true
+line-ending = "lf"
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src/audiobook_generator"]
+check_untyped_defs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+no_implicit_optional = true
+pretty = true
+show_error_codes = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+addopts = [
+    "-ra",
+    "--strict-config",
+    "--strict-markers",
+    "--cov=audiobook_generator",
+    "--cov-branch",
+    "--cov-report=term-missing",
+    "--cov-report=xml",
+    "--cov-fail-under=80",
+]
+xfail_strict = true
+
+[tool.coverage.run]
+branch = true
+source = ["audiobook_generator"]
+
+[tool.coverage.report]
+fail_under = 80
+precision = 1
+show_missing = true
+skip_covered = true
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "start_url": "https://example.com/book",
+  "allowed_domains": [
+    "example.com"
+  ],
+  "selectors": {
+    "book_title": "h1.book-title",
+    "chapter_links": "a.chapter-link",
+    "chapter_content": ".chapter-content",
+    "author": ".book-author",
+    "chapter_title": "h1.chapter-title"
+  },
+  "request_interval_seconds": 0.8,
+  "user_agent": "audiobook-generator/0.1 (+https://github.com/)"
+}

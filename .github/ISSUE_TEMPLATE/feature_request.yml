@@ -1,0 +1,38 @@
+name: Feature request / 功能建议
+description: Propose a focused, generally useful improvement.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请说明通用使用场景，不要附带私人书稿、凭据或要求绕过登录、付费墙、robots.txt、DRM 的方案。
+        Describe a general use case without private text, credentials, or requests to bypass login, paywalls, robots.txt, or DRM.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / 问题
+      description: What workflow is difficult today, and who benefits from solving it?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior / 建议行为
+      description: Include an example CLI or data flow when useful.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives / 替代方案
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope confirmation / 范围确认
+      options:
+        - label: This feature is intended for content the user is authorized to process.
+          required: true
+        - label: This feature does not require bypassing access controls or impersonating a real person's voice.
+          required: true
+

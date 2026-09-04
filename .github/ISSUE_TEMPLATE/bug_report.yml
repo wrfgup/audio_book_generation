@@ -1,0 +1,71 @@
+name: Bug report / 缺陷报告
+description: Report a reproducible problem without sharing private text or credentials.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢报告问题。请勿粘贴 API Key、私人书稿、未脱敏日志或受版权保护的正文。
+        Thank you for reporting a bug. Never paste API keys, private manuscripts, unsanitized logs, or copyrighted text.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area / 模块
+      options:
+        - import-text
+        - scrape
+        - validate
+        - build
+        - packaging or installation
+        - documentation
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version / 版本
+      placeholder: "audiobook --version"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment / 环境
+      description: Operating system, Python version, and installation method.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction / 最小复现步骤
+      description: Use synthetic text and redact paths, URLs, and identifiers.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior / 预期行为
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior / 实际行为
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized output / 脱敏输出
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checklist / 安全确认
+      options:
+        - label: I used synthetic input and removed credentials, private paths, query strings, and copyrighted text.
+          required: true
+        - label: I searched existing issues for the same problem.
+          required: true
+

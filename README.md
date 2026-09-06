@@ -340,6 +340,10 @@ python scripts/prepublish_check.py
 候选目录初始化全新的 `main` 历史。完整步骤见
 [维护者发布清单](docs/maintainer-release.md)。
 
+## 友情链接
+
+- [LINUX DO - 新的理想型社区](https://linux.do/)
+
 ## 安全与许可证
 
 请勿在公开 Issue 中报告密钥泄露、SSRF、路径逃逸等漏洞；请使用 GitHub

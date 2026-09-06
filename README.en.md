@@ -386,6 +386,10 @@ candidate from an explicit public-file allowlist, run
 `python scripts/prepublish_check.py`, and initialize a new `main` history from
 that candidate. See the [maintainer release checklist](docs/maintainer-release.md).
 
+## Community link
+
+- [LINUX DO](https://linux.do/)
+
 ## Security and license
 
 Do not report key exposure, SSRF, path escape, or similar vulnerabilities in a
